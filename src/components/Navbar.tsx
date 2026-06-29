@@ -28,7 +28,7 @@ export default function Navbar({ onOpenModal }: Props) {
         </div>
         <button
           onClick={onOpenModal}
-          className="text-sm font-medium text-teal-300/80 border border-teal-400/20 hover:border-teal-400/50 hover:text-teal-300 hover:bg-teal-400/10 px-5 py-2 rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(79,158,143,0.05)] hover:shadow-[0_0_20px_rgba(79,158,143,0.15)] backdrop-blur-md"
+          className="text-sm font-semibold text-teal-300 border border-teal-400/30 bg-teal-400/10 hover:bg-teal-400/20 hover:border-teal-400/60 hover:text-teal-200 px-5 py-2 rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(79,158,143,0.1)] hover:shadow-[0_0_20px_rgba(79,158,143,0.2)] backdrop-blur-md"
           aria-label="Request an Automation Audit"
         >
           Request an Automation Audit
