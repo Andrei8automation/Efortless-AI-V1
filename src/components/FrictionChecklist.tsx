@@ -50,6 +50,7 @@ function AnimatedNumber({ value }: { value: number }) {
 
 export default function FrictionChecklist({ onOpenModal }: Props) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [hourlyRate, setHourlyRate] = useState(65);
 
   function toggle(id: string) {
     setSelected(prev => {
@@ -65,7 +66,7 @@ export default function FrictionChecklist({ onOpenModal }: Props) {
     const pill = PILLS.find(p => p.id === id);
     return acc + (pill ? pill.hours : 0);
   }, 0);
-  const totalCost = totalHours * 65; // $65/hr average burdened rate
+  const totalCost = totalHours * hourlyRate;
 
   return (
     <section id="friction-checklist" className="py-28 bg-[#0a0a0a] border-t border-white/5 px-6">
@@ -101,6 +102,45 @@ export default function FrictionChecklist({ onOpenModal }: Props) {
             >
               Select the bottlenecks holding your team back. We'll show you the hidden cost of maintaining the status quo.
             </motion.p>
+
+            {/* Hourly Wage Customizer */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5 max-w-sm"
+            >
+              <div className="flex justify-between items-center mb-3">
+                <div>
+                  <label htmlFor="hourly-rate-slider" className="block text-xs font-semibold text-gray-400 uppercase tracking-premium mb-0.5">
+                    Employee Hourly Wage
+                  </label>
+                  <p className="text-[10px] text-gray-600">Avg. fully loaded rate</p>
+                </div>
+                <div className="flex items-center gap-1 bg-white/[0.03] border border-white/8 rounded-lg px-2 py-1">
+                  <span className="text-gray-500 text-xs font-bold">$</span>
+                  <input
+                    type="number"
+                    min="15"
+                    max="300"
+                    value={hourlyRate}
+                    onChange={(e) => setHourlyRate(Math.min(300, Math.max(15, parseInt(e.target.value) || 0)))}
+                    className="w-10 bg-transparent focus:outline-none text-white text-sm font-bold text-center"
+                  />
+                  <span className="text-gray-500 text-xs">/hr</span>
+                </div>
+              </div>
+              <input
+                id="hourly-rate-slider"
+                type="range"
+                min="15"
+                max="300"
+                value={hourlyRate}
+                onChange={(e) => setHourlyRate(parseInt(e.target.value))}
+                className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-teal-400"
+              />
+            </motion.div>
           </div>
 
           <motion.div
@@ -179,7 +219,7 @@ export default function FrictionChecklist({ onOpenModal }: Props) {
                 <div className="text-4xl font-bold text-teal-400 tabular-nums tracking-tight">
                   $<AnimatedNumber value={totalCost * 4} />
                 </div>
-                <p className="text-xs text-gray-600 mt-2">Based on avg. $65/hr burdened rate</p>
+                <p className="text-xs text-gray-600 mt-2">Based on your custom ${hourlyRate}/hr rate</p>
               </div>
 
               {count > 0 && (
