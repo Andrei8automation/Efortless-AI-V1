@@ -19,6 +19,18 @@ const faqs = [
     q: "We've tried automation tools before and they didn't stick. Why is this different?",
     a: "Most automation tools fail because they're configured around ideal conditions, not real ones. We build for edge cases, exceptions, and the messy reality of how your team actually works.",
   },
+  {
+    q: 'What does a typical project cost?',
+    a: "Scope varies, but most first engagements fall in the $3,000–$12,000 range depending on complexity. We're not the cheapest option — but most clients see full payback within 30–60 days from time saved alone. The audit is always free, with no obligation to move forward.",
+  },
+  {
+    q: 'How long does it take to get something running?',
+    a: "Most systems go live within 2–4 weeks from kickoff. Simpler automations can be production-ready in under a week. We don't disappear for months — you'll see working progress early.",
+  },
+  {
+    q: 'Do you provide ongoing support after the build?',
+    a: "Yes. Every delivery includes full documentation and a handover session. We offer optional maintenance retainers for monitoring, updates, and iteration — but there's no lock-in. Many clients run their systems independently after handoff.",
+  },
 ];
 
 export default function FaqAccordion() {

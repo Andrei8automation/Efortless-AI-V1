@@ -3,11 +3,14 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import WhoItsFor from './components/WhoItsFor';
 import HowItWorks from './components/HowItWorks';
+import IntegrationLogos from './components/IntegrationLogos';
 import FrictionChecklist from './components/FrictionChecklist';
 import SecuritySection from './components/SecuritySection';
 import FaqAccordion from './components/FaqAccordion';
 import CredibilitySignals from './components/CredibilitySignals';
+import TestimonialsSection from './components/TestimonialsSection';
 import AuditOffer from './components/AuditOffer';
+import PricingTransparency from './components/PricingTransparency';
 import WhatHappensNext from './components/WhatHappensNext';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
@@ -28,12 +31,15 @@ export default function App() {
         <HeroSection onOpenModal={openModal} />
         <WhoItsFor />
         <HowItWorks />
+        <IntegrationLogos />
         <FrictionChecklist onOpenModal={openModal} />
         <SecuritySection />
-        <FaqAccordion />
         <CredibilitySignals />
+        <TestimonialsSection />
         <AuditOffer onOpenModal={openModal} />
+        <PricingTransparency />
         <WhatHappensNext />
+        <FaqAccordion />
         <FinalCta onOpenModal={openModal} />
       </main>
       <Footer />

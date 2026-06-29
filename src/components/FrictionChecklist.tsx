@@ -181,6 +181,15 @@ export default function FrictionChecklist({ onOpenModal }: Props) {
                 </div>
                 <p className="text-xs text-gray-600 mt-2">Based on avg. $65/hr burdened rate</p>
               </div>
+
+              {count > 0 && (
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-teal-400/5 border border-teal-400/15">
+                  <span className="text-teal-400 text-base leading-none mt-0.5">↗</span>
+                  <p className="text-xs text-teal-300/80 leading-relaxed">
+                    Most clients recover this cost within the <strong className="text-teal-300 font-semibold">first 30 days</strong> — before a second invoice ever lands.
+                  </p>
+                </div>
+              )}
             </div>
 
             <AnimatePresence>

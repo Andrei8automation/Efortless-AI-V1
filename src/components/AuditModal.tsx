@@ -166,6 +166,7 @@ export default function AuditModal({ isOpen, onClose }: Props) {
                         className={`w-full bg-[#1a1a1a] border rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm transition-colors outline-none focus:border-teal-400 ${errors.email ? 'border-red-500/60' : 'border-white/10'}`}
                       />
                       {errors.email && <p className="text-red-400 text-xs mt-1.5">{errors.email}</p>}
+                      <p className="text-gray-600 text-xs mt-1.5">We never share your info. No spam, ever.</p>
                     </div>
 
                     <div>
