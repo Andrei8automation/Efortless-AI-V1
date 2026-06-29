@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
-import BlueprintCrosshair from './BlueprintCrosshair';
 
 const testimonials = [
   {
@@ -62,10 +61,6 @@ export default function TestimonialsSection() {
         </motion.div>
 
         <div className="relative">
-          <BlueprintCrosshair className="-top-1.5 -left-1.5 z-10" />
-          <BlueprintCrosshair className="-top-1.5 -right-1.5 z-10" />
-          <BlueprintCrosshair className="-bottom-1.5 -left-1.5 z-10" />
-          <BlueprintCrosshair className="-bottom-1.5 -right-1.5 z-10" />
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
             {testimonials.map((t, i) => (
