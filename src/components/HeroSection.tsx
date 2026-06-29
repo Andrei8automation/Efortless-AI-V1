@@ -137,7 +137,7 @@ export default function HeroSection({ onOpenModal }: Props) {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-10"
+          className="text-lg leading-relaxed max-w-2xl mx-auto mb-10 bg-gradient-to-b from-gray-100 to-gray-400/80 bg-clip-text text-transparent"
         >
           Effortless AI builds quiet, reliable automation systems that eliminate operational drag — not AI experiments, not chatbots. Systems that work while you focus on what matters.
         </motion.p>
