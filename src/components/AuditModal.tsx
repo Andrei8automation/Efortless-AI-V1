@@ -215,11 +215,26 @@ export default function AuditModal({ isOpen, onClose }: Props) {
                         className={`w-full bg-[#1a1a1a] border rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm transition-colors outline-none focus:border-teal-400 resize-none ${errors.headache ? 'border-red-500/60' : 'border-white/10'}`}
                       />
                       {errors.headache && <p className="text-red-400 text-xs mt-1.5">{errors.headache}</p>}
+                      
+                      <div className="flex items-center justify-between mt-1.5 text-xs text-gray-500">
+                        <div>
+                          {fields.headache.length >= 20 ? (
+                            <span className="text-emerald-400 font-medium flex items-center gap-1">
+                              <span>✓</span> Good detail level
+                            </span>
+                          ) : (
+                            <span>Describe in a few words (min 20 chars)</span>
+                          )}
+                        </div>
+                        <div className={fields.headache.length >= 20 ? 'text-emerald-400 font-medium' : ''}>
+                          {fields.headache.length} characters
+                        </div>
+                      </div>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-teal-400 hover:bg-teal-500 text-[#0a0a0a] font-semibold py-3.5 rounded-lg transition-colors text-sm mt-2"
+                      className="w-full relative overflow-hidden bg-teal-400/10 hover:bg-teal-400/20 text-teal-300 font-semibold py-3.5 rounded-lg transition-all duration-300 text-sm mt-2 border border-teal-400/30 hover:border-teal-400/60 shadow-[0_0_20px_rgba(79,158,143,0.1)] hover:shadow-[0_0_30px_rgba(79,158,143,0.2)] backdrop-blur-md"
                     >
                       Submit Audit Request
                     </button>

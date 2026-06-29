@@ -25,8 +25,20 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-28 bg-[#141414] px-6">
+    <section id="faq" className="py-28 bg-[#141414] px-6">
       <div className="max-w-3xl mx-auto">
+        <div className="sticky top-20 z-20 pointer-events-none mb-10 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block bg-[#0a0a0a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-gray-500 border border-white/5 shadow-lg shadow-black/20 pointer-events-auto"
+          >
+            COMMON QUESTIONS
+          </motion.span>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,9 +46,6 @@ export default function FaqAccordion() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <p className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4">
-            Common Questions
-          </p>
           <h2 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
             We've heard the objections. Here are straight answers.
           </h2>

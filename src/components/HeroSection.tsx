@@ -1,14 +1,70 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import Hero3DBackground from './Hero3DBackground';
 
 interface Props {
   onOpenModal: () => void;
 }
 
+const phrases = [
+  "manual work",
+  "spreadsheet work",
+  "copy-paste work",
+  "approval chains",
+  "data entry"
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+};
+
 export default function HeroSection({ onOpenModal }: Props) {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Parallax transforms
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-32 bg-[#0a0a0a] overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center justify-center px-6 py-32 bg-[#0a0a0a] overflow-hidden">
+      {/* true 3D background element */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY }}>
+        <Hero3DBackground />
+      </motion.div>
+
       {/* ambient teal glow */}
-      <div className="hero-glow absolute inset-0 pointer-events-none" aria-hidden="true" />
+      <motion.div className="hero-glow absolute inset-0 pointer-events-none" style={{ y: glowY }} aria-hidden="true" />
 
       {/* faint horizontal lines for depth */}
       <div
@@ -20,7 +76,7 @@ export default function HeroSection({ onOpenModal }: Props) {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-3xl mx-auto text-center z-10">
+      <div className="relative max-w-4xl mx-auto text-center z-10">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,17 +84,53 @@ export default function HeroSection({ onOpenModal }: Props) {
           className="inline-flex items-center gap-2 border border-teal-400/25 bg-teal-400/5 rounded-full px-4 py-1.5 mb-10"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-          <span className="text-teal-400 text-xs font-medium tracking-widest uppercase">B2B Automation Agency</span>
+          <span className="text-teal-400 text-xs font-medium tracking-premium uppercase">B2B Automation Agency</span>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-5xl md:text-[3.75rem] font-semibold text-white leading-[1.12] tracking-tight mb-7"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[3.75rem] font-semibold text-white leading-[1.35] tracking-tight mb-7 flex flex-wrap justify-center items-center gap-x-[0.22em] gap-y-[0.1em]"
         >
-          Your business runs on manual work that should have been automated{' '}
-          <span className="text-teal-400">yesterday.</span>
+          {"Your business runs on".split(" ").map((word, i) => (
+            <motion.span key={`w1-${i}`} variants={wordVariants} className="inline-block">
+              {word}
+            </motion.span>
+          ))}
+          
+          <span className="relative inline-flex items-center gap-2.5 px-4 py-1.5 mx-1 rounded-2xl bg-teal-400/5 border border-teal-400/20 text-teal-400 font-bold align-middle select-none">
+            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse flex-shrink-0" />
+            <span className="relative inline-block">
+              <span className="invisible select-none pointer-events-none" aria-hidden="true">
+                spreadsheet work
+              </span>
+              <span className="absolute left-0 right-0 top-0 text-center">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentPhraseIndex}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                    className="inline-block whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-teal-200 via-teal-400 to-teal-300"
+                  >
+                    {phrases[currentPhraseIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </span>
+          </span>
+
+          {"that should have been automated".split(" ").map((word, i) => (
+            <motion.span key={`w2-${i}`} variants={wordVariants} className="inline-block">
+              {word}
+            </motion.span>
+          ))}
+
+          <motion.span variants={wordVariants} className="inline-block text-teal-400">
+            yesterday.
+          </motion.span>
         </motion.h1>
 
         <motion.p
@@ -58,29 +150,13 @@ export default function HeroSection({ onOpenModal }: Props) {
         >
           <button
             onClick={onOpenModal}
-            className="btn-shimmer bg-teal-400 hover:bg-teal-500 text-[#0a0a0a] font-semibold px-8 py-4 rounded-xl text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_32px_rgba(79,158,143,0.25)]"
+            className="btn-shimmer relative overflow-hidden bg-teal-400/10 hover:bg-teal-400/20 text-teal-300 font-semibold px-8 py-4 rounded-xl text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border border-teal-400/30 hover:border-teal-400/60 shadow-[0_0_30px_rgba(79,158,143,0.15)] hover:shadow-[0_0_40px_rgba(79,158,143,0.3)] backdrop-blur-md"
           >
             Request an Automation Audit
           </button>
           <p className="text-gray-600 text-sm">
             No commitment. No sales pitch. Just clarity on where automation can help.
           </p>
-        </motion.div>
-
-        {/* scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
-          aria-hidden="true"
-        >
-          <span className="text-gray-700 text-[10px] tracking-widest uppercase">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-6 bg-gradient-to-b from-gray-700 to-transparent"
-          />
         </motion.div>
       </div>
     </section>

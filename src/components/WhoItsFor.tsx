@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SpotlightCard from './SpotlightCard';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,18 +24,20 @@ const notForYou = [
 
 export default function WhoItsFor() {
   return (
-    <section className="py-28 bg-[#111111] dot-grid px-6">
+    <section id="who-its-for" className="py-28 bg-[#111111] dot-grid px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-10 text-center"
-        >
-          Is This for You?
-        </motion.p>
+        <div className="sticky top-20 z-20 pointer-events-none mb-10 text-center">
+          <motion.span
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block bg-[#0a0a0a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-premium uppercase text-gray-500 border border-white/5 shadow-lg shadow-black/20 pointer-events-auto"
+          >
+            IS THIS FOR YOU?
+          </motion.span>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-4">
           <motion.div
@@ -43,20 +46,22 @@ export default function WhoItsFor() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="card-glow p-8 md:p-10 rounded-2xl bg-[#0e0e0e] border border-teal-400/15"
+            className="h-full"
           >
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-teal-400" />
-              <h3 className="text-white font-semibold text-lg">This is for you if...</h3>
-            </div>
-            <ul className="space-y-4">
-              {forYou.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-teal-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <SpotlightCard className="h-full p-8 md:p-10 rounded-2xl bg-[#0e0e0e] border border-teal-400/15">
+              <div className="flex items-center gap-2.5 mb-6">
+                <span className="w-2 h-2 rounded-full bg-teal-400" />
+                <h3 className="text-white font-semibold text-lg">This is for you if...</h3>
+              </div>
+              <ul className="space-y-4">
+                {forYou.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-teal-400 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </SpotlightCard>
           </motion.div>
 
           <motion.div
@@ -65,20 +70,22 @@ export default function WhoItsFor() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.18 }}
-            className="p-8 md:p-10 rounded-2xl bg-[#0a0a0a] border border-white/8"
+            className="h-full"
           >
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-gray-600" />
-              <h3 className="text-gray-500 font-semibold text-lg">This is not for you if...</h3>
-            </div>
-            <ul className="space-y-4">
-              {notForYou.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-gray-700 flex-shrink-0" />
-                  <span className="text-gray-600 text-sm leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <SpotlightCard spotlightColor="rgba(255,255,255,0.04)" className="h-full p-8 md:p-10 rounded-2xl bg-[#0a0a0a] border border-white/8">
+              <div className="flex items-center gap-2.5 mb-6">
+                <span className="w-2 h-2 rounded-full bg-gray-600" />
+                <h3 className="text-gray-500 font-semibold text-lg">This is not for you if...</h3>
+              </div>
+              <ul className="space-y-4">
+                {notForYou.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-gray-700 flex-shrink-0" />
+                    <span className="text-gray-600 text-sm leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </SpotlightCard>
           </motion.div>
         </div>
       </div>

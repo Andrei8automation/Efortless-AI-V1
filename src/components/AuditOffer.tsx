@@ -16,15 +16,24 @@ export default function AuditOffer({ onOpenModal }: Props) {
   return (
     <section className="py-28 bg-[#111111] dot-grid px-6">
       <div className="max-w-3xl mx-auto">
+        <div className="sticky top-20 z-20 pointer-events-none mb-10 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block bg-[#0a0a0a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-premium uppercase text-gray-500 border border-white/5 shadow-lg shadow-black/20 pointer-events-auto"
+          >
+            THE OFFER
+          </motion.span>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-6 text-center">
-            The Offer
-          </p>
           <h2 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight text-center mb-8">
             Free Automation Audit —{' '}
             <span className="text-teal-400">No Strings Attached</span>
@@ -43,7 +52,7 @@ export default function AuditOffer({ onOpenModal }: Props) {
               style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79,158,143,0.06) 0%, transparent 70%)' }}
               aria-hidden="true"
             />
-            <h3 className="text-white font-semibold text-xs uppercase tracking-widest mb-5 text-center">
+            <h3 className="text-white font-semibold text-xs uppercase tracking-premium mb-5 text-center">
               What the audit covers
             </h3>
             <ul className="space-y-3">
@@ -59,7 +68,7 @@ export default function AuditOffer({ onOpenModal }: Props) {
           <div className="text-center">
             <button
               onClick={onOpenModal}
-              className="btn-shimmer bg-teal-400 hover:bg-teal-500 text-[#0a0a0a] font-semibold px-8 py-4 rounded-xl text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_24px_rgba(79,158,143,0.2)]"
+              className="btn-shimmer relative overflow-hidden bg-teal-400/10 hover:bg-teal-400/20 text-teal-300 font-semibold px-8 py-4 rounded-xl text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border border-teal-400/30 hover:border-teal-400/60 shadow-[0_0_30px_rgba(79,158,143,0.15)] hover:shadow-[0_0_40px_rgba(79,158,143,0.3)] backdrop-blur-md"
             >
               Request Your Free Audit
             </button>

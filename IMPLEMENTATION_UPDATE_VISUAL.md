@@ -6,28 +6,28 @@ This plan details the implementation of 10 modern visual, motion, and UX polish 
 
 ## Progress Checklist
 
-- [ ] **Task 1: Reading-Progress Indicators** (Scroll bar + Floating Vertical dot-trail)
-  - [ ] Create `ScrollProgress.tsx` component
-  - [ ] Integrate into `App.tsx` and assign semantic IDs to sections
-- [ ] **Task 2: Hero Headline Animations** (Split-text + Word cycling)
-  - [ ] Modify `HeroSection.tsx` to animate static words using staggered children variants
-  - [ ] Add cycling typewriter/slide phrase rotation on a 3-second interval
-- [ ] **Task 3: Sticky Section Labels** (Floating category tags)
-  - [ ] Update all section files to pin their small uppercase tags using `sticky top-20` and glassmorphic styling
-- [ ] **Task 4: HowItWorks Cards Interactivity** (Hover-reveal details)
-  - [ ] Add custom Lucide icons and detailed subtext inside `HowItWorks.tsx`
-  - [ ] Implement transition reveal (opacity/max-height) on card hover
-- [ ] **Task 5: Keyboard-Accessible Pill Focus Rings** (Accessibility)
-  - [ ] Add `focus-visible:ring-2 focus-visible:ring-teal-400` styling to target elements in `FrictionChecklist.tsx`
-- [ ] **Task 6: Infinite Marquee Operator Ticker** (CredibilitySignals)
-  - [ ] Replace static pills in `CredibilitySignals.tsx` with double-duplicated infinite marquee loop using Framer Motion
-  - [ ] Implement fade-out edge masks on left and right borders of the ticker
-- [ ] **Task 7: Textarea Live Validation & Counter** (Form UX)
-  - [ ] Update `AuditModal.tsx` headache text field with live character count
-  - [ ] Render green checkmark with "Good detail level" badge when content >= 20 characters
-- [ ] **Task 8: Drifting Ambient Background Orbs** (FinalCta section)
-  - [ ] Add keyframes `float-orb-1`, `float-orb-2`, and `float-orb-3` in `index.css`
-  - [ ] Insert three drifting, highly blurred teal and gray gradient orbs into `FinalCta.tsx`
+- [x] **Task 1: Reading-Progress Indicators** (Scroll bar + Floating Vertical dot-trail)
+  - [x] Create `ScrollProgress.tsx` component
+  - [x] Integrate into `App.tsx` and assign semantic IDs to sections
+- [x] **Task 2: Hero Headline Animations** (Split-text + Word cycling)
+  - [x] Modify `HeroSection.tsx` to animate static words using staggered children variants
+  - [x] Add cycling typewriter/slide phrase rotation on a 3-second interval
+- [x] **Task 3: Sticky Section Labels** (Floating category tags)
+  - [x] Update all section files to pin their small uppercase tags using `sticky top-20` and glassmorphic styling
+- [x] **Task 4: HowItWorks Cards Interactivity** (Hover-reveal details)
+  - [x] Add custom Lucide icons and detailed subtext inside `HowItWorks.tsx`
+  - [x] Implement transition reveal (opacity/max-height) on card hover
+- [x] **Task 5: Keyboard-Accessible Pill Focus Rings** (Accessibility)
+  - [x] Add `focus-visible:ring-2 focus-visible:ring-teal-400` styling to target elements in `FrictionChecklist.tsx`
+- [x] **Task 6: Infinite Marquee Operator Ticker** (CredibilitySignals)
+  - [x] Replace static pills in `CredibilitySignals.tsx` with double-duplicated infinite marquee loop using Framer Motion
+  - [x] Implement fade-out edge masks on left and right borders of the ticker
+- [x] **Task 7: Textarea Live Validation & Counter** (Form UX)
+  - [x] Update `AuditModal.tsx` headache text field with live character count
+  - [x] Render green checkmark with "Good detail level" badge when content >= 20 characters
+- [x] **Task 8: Drifting Ambient Background Orbs** (FinalCta section)
+  - [x] Add keyframes `float-orb-1`, `float-orb-2`, and `float-orb-3` in `index.css`
+  - [x] Insert three drifting, highly blurred teal and gray gradient orbs into `FinalCta.tsx`
 
 ---
 

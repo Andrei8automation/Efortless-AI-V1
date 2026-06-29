@@ -12,6 +12,7 @@ import WhatHappensNext from './components/WhatHappensNext';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
 import AuditModal from './components/AuditModal';
+import ScrollProgress from './components/ScrollProgress';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -20,7 +21,8 @@ export default function App() {
   const closeModal = () => setModalOpen(false);
 
   return (
-    <div className="bg-[#0a0a0a] font-sans min-h-screen">
+    <div className="bg-[#0a0a0a] ambient-mesh font-sans min-h-screen text-gray-100">
+      <ScrollProgress />
       <Navbar onOpenModal={openModal} />
       <main>
         <HeroSection onOpenModal={openModal} />
